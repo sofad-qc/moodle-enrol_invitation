@@ -68,6 +68,10 @@ class enrol_invitation_edit_form extends moodleform {
 
         $mform->addElement('select', 'customint6', get_string('enrolconfimation', 'enrol_invitation'), $optionsd);
         $mform->setDefault('customint6', 0);
+
+        $mform->addElement('select', 'customint7', get_string('allowsignup', 'enrol_invitation'), $optionsd);
+        $mform->setDefault('customint7', 1);
+        $mform->addHelpButton('customint7', 'allowsignup', 'enrol_invitation');
         // Set roles.
         $mform->addElement('header', 'header_default', get_string('defaultinvitevalues', 'enrol_invitation'));
         $mform->addElement('select', 'customint1', get_string('usedefaultvalues', 'enrol_invitation'), $optionsd);
@@ -111,8 +115,8 @@ class enrol_invitation_edit_form extends moodleform {
         $temp = new stdClass();
         $temp->email = $USER->email;
         $temp->supportemail = !empty($CFG->supportemail) ? $CFG->supportemail : $CFG->noreplyaddress;
-        $mform->addElement('checkbox', 'customint3', '', get_string('show_from_email', 'enrol_invitation', $temp));
-        $mform->setDefault('customint3', 0);
+        //$mform->addElement('hidden', 'customint3', '', get_string('show_from_email', 'enrol_invitation', $temp));
+        //$mform->setDefault('customint3', 1);
         $mform->addElement('checkbox', 'customint4', '', get_string('notify_inviter', 'enrol_invitation', $temp));
         $mform->setDefault('customint4', 0);
         $this->add_action_buttons(true, ($instance->id ? null : get_string('addinstance', 'enrol')));
@@ -120,7 +124,7 @@ class enrol_invitation_edit_form extends moodleform {
         $mform->disabledIf('role_group', 'customint1', 'eq', 0);
         $mform->disabledIf('customchar1', 'customint1', 'eq', 0);
         $mform->disabledIf('customtext1', 'customint1', 'eq', 0);
-        $mform->disabledIf('customint3', 'customint1', 'eq', 0);
+        //$mform->disabledIf('customint3', 'customint1', 'eq', 0);
         $mform->disabledIf('customint4', 'customint1', 'eq', 0);
     }
 

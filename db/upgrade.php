@@ -314,6 +314,29 @@ function xmldb_enrol_invitation_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2025011300, 'enrol', 'invitation');
     }
 
+    if ($oldversion < 2026101300) {
+        // Account creation is now a setting of each invitation enrolment method (customint7)
+        // instead of site-wide. Existing methods keep the former site setting (enabled by default).
+        $allowsignup = (get_config('enrol_invitation', 'allowsignup') === '0') ? 0 : 1;
+        $DB->set_field('enrol', 'customint7', $allowsignup, ['enrol' => 'invitation']);
+        unset_config('allowsignup', 'enrol_invitation');
+
+        upgrade_plugin_savepoint(true, 2026101300, 'enrol', 'invitation');
+    }
+
+    if ($oldversion < 2026101301) {
+        // Clean up after a development build that stored this option on each invitation:
+        // drop its column and enable the option on methods that were never set.
+        $table = new xmldb_table('enrol_invitation');
+        $field = new xmldb_field('allowsignup');
+        if ($dbman->field_exists($table, $field)) {
+            $dbman->drop_field($table, $field);
+        }
+        $DB->set_field_select('enrol', 'customint7', 1, "enrol = 'invitation' AND customint7 IS NULL");
+
+        upgrade_plugin_savepoint(true, 2026101301, 'enrol', 'invitation');
+    }
+
 
     return true;
 }

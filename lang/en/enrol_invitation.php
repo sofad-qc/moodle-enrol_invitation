@@ -64,7 +64,7 @@ $string['emailmsghtml_help'] = '<p>Good day,</p>
   <li>Course name: <b>{$a->coursename}</b></li>
 </ul>
 {$a->message}
-<p>Sign-in to confirm your enrolment in the course. If you do not have an account yet, you will be able to create one after clicking the button below.</p>
+<p>Sign-in to confirm your enrolment in the course.{$a->signupnotice}</p>
 <p>By using this link, you are acknowledging that you are the person to whom this email was addressed and for whom this invitation is intended.</p>
 <p><a class="btn btn-primary" href="{$a->inviteurl}">{$a->acceptinvitation}</a></p>
 <p>If you do not want to join this course, please use the following link instead:</p>
@@ -163,7 +163,8 @@ $string['x_minutes'] = '{$a} minutes';
 
 // Account creation from an invitation.
 $string['allowsignup'] = 'Allow account creation from invitation';
-$string['allowsignup_desc'] = 'If enabled, invitees who do not have an account yet can create one directly from the invitation link by entering their name and a password. Their email address is used as the username and the invitation is accepted automatically.';
+$string['allowsignup_help'] = 'If set to Yes, invitees who do not have an account yet can create one directly from the invitation link by entering their name and a password. Their email address is used as the username and the invitation is accepted automatically. If set to No, they must already have an account and log in to accept the invitation.';
+$string['emailmsgsignupnotice'] = ' If you do not have an account yet, you will be able to create one after clicking the button below.';
 $string['signup_intro'] = '<p>You have been invited to <b>{$a->coursefullname}</b>. You do not have an account yet: fill in the form below to create it. Your email address <b>{$a->email}</b> will be your username.</p>';
 $string['signup_invalidusername'] = 'This email address cannot be used as a username. Please contact the site support for assistance.';
 $string['signup_submit'] = 'Create my account and join the course';

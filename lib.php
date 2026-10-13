@@ -130,6 +130,7 @@ class enrol_invitation_plugin extends enrol_plugin {
         $fields['customint4'] = 0;
         $fields['customint5'] = 0;
         $fields['customint6'] = 0;
+        $fields['customint7'] = 1;
         $fields['customchar1'] = '';
         $fields['customtext1'] = '';
 

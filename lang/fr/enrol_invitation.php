@@ -64,7 +64,7 @@ $string['emailmsghtml_help'] = '<p>Bonjour,</p>
   <li>Nom du cours : <b>{$a->coursename}</b></li>
 </ul>
 {$a->message}
-<p>Connectez-vous pour confirmer votre inscription au cours. Si vous n\'avez pas encore de compte, vous pourrez en créer un après avoir cliqué sur le bouton ci-dessous.</p>
+<p>Connectez-vous pour confirmer votre inscription au cours.{$a->signupnotice}</p>
 <p>En utilisant ce lien, vous confirmez être la personne à qui ce courriel a été adressé et à qui cette invitation est destinée.</p>
 <p><a class="btn btn-primary" href="{$a->inviteurl}">{$a->acceptinvitation}</a></p>
 <p>Si vous ne souhaitez pas rejoindre ce cours, veuillez plutôt utiliser le lien suivant :</p>
@@ -163,7 +163,8 @@ $string['x_minutes'] = '{$a} minutes';
 
 // Account creation from an invitation.
 $string['allowsignup'] = 'Permettre la création de compte à partir de l\'invitation';
-$string['allowsignup_desc'] = 'Si cette option est activée, les personnes invitées qui n\'ont pas encore de compte peuvent en créer un directement à partir du lien d\'invitation en saisissant leur nom et un mot de passe. Leur adresse courriel sert de nom d\'utilisateur et l\'invitation est acceptée automatiquement.';
+$string['allowsignup_help'] = 'Si cette option est à Oui, les personnes invitées qui n\'ont pas encore de compte peuvent en créer un directement à partir du lien d\'invitation en saisissant leur nom et un mot de passe. Leur adresse courriel sert de nom d\'utilisateur et l\'invitation est acceptée automatiquement. Si elle est à Non, elles doivent déjà avoir un compte et se connecter pour accepter l\'invitation.';
+$string['emailmsgsignupnotice'] = ' Si vous n\'avez pas encore de compte, vous pourrez en créer un après avoir cliqué sur le bouton ci-dessous.';
 $string['signup_intro'] = '<p>Vous avez été invité(e) au cours <b>{$a->coursefullname}</b>. Vous n\'avez pas encore de compte : remplissez le formulaire ci-dessous pour le créer. Votre adresse courriel <b>{$a->email}</b> sera votre nom d\'utilisateur.</p>';
 $string['signup_invalidusername'] = 'Cette adresse courriel ne peut pas être utilisée comme nom d\'utilisateur. Veuillez communiquer avec le soutien technique du site pour obtenir de l\'aide.';
 $string['signup_submit'] = 'Créer mon compte et rejoindre le cours';

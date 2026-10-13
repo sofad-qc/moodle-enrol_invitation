@@ -228,6 +228,8 @@ class invitation_manager {
                 $messageparams->rejecturl = $rejecturl->out(false);
                 $messageparams->acceptinvitation = get_string('invitationacceptancebutton', 'enrol_invitation');
                 $messageparams->rejectinvitation = get_string('invitationrejectbutton', 'enrol_invitation');
+                $messageparams->signupnotice = !empty($this->enrolinstance->customint7)
+                    ? get_string('emailmsgsignupnotice', 'enrol_invitation') : '';
 
                 // Check if user exists.
                 $contactuser = $DB->get_record('user', ['email' => $invitation->email]);
@@ -1000,8 +1002,8 @@ function distance_of_time_in_words($fromtime, $totime = 0, $includeseconds = fal
 /**
  * Whether the invitee may create their account from the invitation (signup.php).
  *
- * True when the feature is enabled, the invitation is not tied to an existing user
- * and no account uses the invitation email address yet.
+ * True when the course's invitation enrolment method allows it, the invitation is not
+ * tied to an existing user and no account uses the invitation email address yet.
  *
  * @param object $invitation
  * @return bool
@@ -1009,7 +1011,13 @@ function distance_of_time_in_words($fromtime, $totime = 0, $includeseconds = fal
 function invitation_signup_allowed($invitation) {
     global $DB, $CFG;
 
-    if (!get_config('enrol_invitation', 'allowsignup') || !empty($invitation->userid)) {
+    if (!empty($invitation->userid)) {
+        return false;
+    }
+
+    $instance = $DB->get_record('enrol', ['enrol' => 'invitation', 'courseid' => $invitation->courseid],
+        'id, customint7', IGNORE_MULTIPLE);
+    if (empty($instance->customint7)) {
         return false;
     }
 

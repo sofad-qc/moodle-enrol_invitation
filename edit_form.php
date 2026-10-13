@@ -68,6 +68,10 @@ class enrol_invitation_edit_form extends moodleform {
 
         $mform->addElement('select', 'customint6', get_string('enrolconfimation', 'enrol_invitation'), $optionsd);
         $mform->setDefault('customint6', 0);
+
+        $mform->addElement('select', 'customint7', get_string('allowsignup', 'enrol_invitation'), $optionsd);
+        $mform->setDefault('customint7', 1);
+        $mform->addHelpButton('customint7', 'allowsignup', 'enrol_invitation');
         // Set roles.
         $mform->addElement('header', 'header_default', get_string('defaultinvitevalues', 'enrol_invitation'));
         $mform->addElement('select', 'customint1', get_string('usedefaultvalues', 'enrol_invitation'), $optionsd);
